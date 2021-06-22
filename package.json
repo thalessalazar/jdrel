@@ -1,5 +1,5 @@
 {
-  "name": "api-mvc",
+  "name": "jdrel",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -8,7 +8,7 @@
     "dev": "nodemon ./src/server.js",
     "start": "nodemon ./src/server.js"
   },
-  "author": "",
+  "author": "Thales Salazar",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.1",

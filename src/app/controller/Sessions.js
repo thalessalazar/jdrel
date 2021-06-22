@@ -33,8 +33,6 @@ class SessionController {
             expiresIn: authConfig.expiresIn,
         });
 
-        console.log(jwtToken);
-
         return res.status(200).json({
             user: {
                 id,

@@ -11,6 +11,8 @@ Configure os sequintes arquivos:
 $ yarn
 
 $ yarn install
+
+$ yarn sequelize db:migrate
 ```
 
 

@@ -15,8 +15,8 @@ export default async (req, res, next) => {
     const [, token] = authHeader.split(" ");
 
     try {
+        // eslint-disable-next-line no-unused-vars
         const decoded = await promisify(jwt.verify)(token, authConfig.secret);
-        console.log({ decoded });
         return next();
     } catch (error) {
         console.log(error);

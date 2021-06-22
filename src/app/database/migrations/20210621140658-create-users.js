@@ -1,7 +1,7 @@
 /* eslint-disable arrow-body-style */
 module.exports = {
     up: async (queryInterface, Sequelize) => {
-        queryInterface.createTable("customers", {
+        queryInterface.createTable("users", {
             id: {
                 type: Sequelize.INTEGER,
                 allowNull: false,
@@ -17,6 +17,15 @@ module.exports = {
                 allowNull: false,
                 unique: true,
             },
+            password_hash: {
+                type: Sequelize.STRING,
+                allowNull: false,
+            },
+            status: {
+                type: Sequelize.ENUM("ACTIVE", "INACTIVE"),
+                allowNull: false,
+                defaultValue: "ACTIVE",
+            },
             created_at: {
                 type: Sequelize.DATE,
                 allowNull: false,
@@ -29,6 +38,6 @@ module.exports = {
     },
 
     down: async (queryInterface) => {
-        return queryInterface.dropTable("customers");
+        return queryInterface.dropTable("users");
     },
 };

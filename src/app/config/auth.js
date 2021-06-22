@@ -1,4 +1,4 @@
 export default {
-    secret: process.env.AUTH_SECRET,
+    secret: "awsdkhjaksdjhkashjdhjaksdaskjdhaksdjhaksjdhjkasd",
     expiresIn: "7d",
 };

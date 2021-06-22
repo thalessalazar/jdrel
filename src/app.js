@@ -1,3 +1,4 @@
+import cors from "cors";
 import express from "express";
 import router from "./router/router";
 
@@ -13,6 +14,7 @@ class App {
     middlewares() {
         this.server.use(express.json());
         this.server.use(express.urlencoded({ extended: false }));
+        this.server.use(cors());
         // this.server.use(authMiddleware);
     }
 

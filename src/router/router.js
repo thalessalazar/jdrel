@@ -2,34 +2,32 @@ import { Router } from "express";
 
 import authMiddleware from "../app/middlewares/auth";
 import sessions from "../app/controller/Sessions";
-import customers from "../app/controller/Customers";
-import contacts from "../app/controller/Contacts";
-import users from "../app/controller/Users";
+import User from "../app/controller/Users";
+import Cep from "../app/controller/Cep";
 
 const routes = new Router();
+
 // sessions
+routes.post("/api/users", User.create);
 routes.post("/sessions", sessions.create);
 
 routes.use(authMiddleware);
-// customers
-routes.get("/customers", customers.index);
-routes.get("/customers/:id", customers.show);
-routes.post("/customers", customers.create);
-routes.put("/customers/:id", customers.update);
-routes.delete("/customers/:id", customers.destroy);
-
-// contacts
-routes.get("/customers/:customerId/contacts", contacts.index);
-routes.get("/customers/:customerId/contacts/:id", contacts.show);
-routes.post("/customers/:customerId/contacts", contacts.create);
-routes.put("/customers/:customerId/contacts/:id", contacts.update);
-routes.delete("/customers/:customerId/contacts/:id", contacts.destroy);
 
 // users
-routes.get("/users", users.index);
-routes.get("/users/:id", users.show);
-routes.post("/users", users.create);
-routes.put("/users/:id", users.update);
-routes.delete("/users/:id", users.destroy);
+routes.get("/api/users", User.index);
+routes.get("/api/users/:id", User.show);
+routes.put("/api/users/:id", User.update);
+routes.delete("/api/users/:id", User.destroy);
+
+// ceps
+routes.get("/api/cep/", Cep.index);
+routes.get("/api/cep/:cep", Cep.show);
+routes.post("/api/cep/", Cep.create);
+routes.put("/api/cep/:cep", Cep.update);
+routes.delete("/api/cep/:cep", Cep.destroy);
+
+// counts
+routes.get("/api/count/cep", Cep.count);
+routes.get("/api/count/users", User.count);
 
 export default routes;

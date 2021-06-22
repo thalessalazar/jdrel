@@ -8,6 +8,7 @@ class UserController {
         const {
             name,
             email,
+            status,
             createdBefore,
             createdAfter,
             updatedBefore,
@@ -35,6 +36,15 @@ class UserController {
                 ...where,
                 email: {
                     [Op.iLike]: email,
+                },
+            };
+        }
+
+        if (status) {
+            where = {
+                ...where,
+                status: {
+                    [Op.eq]: status,
                 },
             };
         }
@@ -112,6 +122,7 @@ class UserController {
         const schema = Yup.object().shape({
             name: Yup.string().required(),
             email: Yup.string().email().required(),
+            status: Yup.string().uppercase(),
             password: Yup.string().required().min(8),
             passwordConfirmation: Yup.string().when(
                 "password",
@@ -137,6 +148,7 @@ class UserController {
         const schema = Yup.object().shape({
             name: Yup.string(),
             email: Yup.string().email(),
+            status: Yup.string().uppercase(),
             oldPassword: Yup.string().min(8),
             password: Yup.string()
                 .min(8)
@@ -185,6 +197,12 @@ class UserController {
         await user.destroy();
 
         return res.json();
+    }
+
+    async count(req, res) {
+        const total = await User.count();
+
+        return res.status(200).json({ total });
     }
 }
 
